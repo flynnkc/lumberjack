@@ -18,10 +18,10 @@ const lumberjackMaxLogLevel int8 = 3
 // 3 DEBUG -- An enhanced set of log collection to be used during debugging
 func MakeLogs(level int, writer io.Writer) (*Woodpile, error) {
 	if level < 0 || int8(level) > lumberjackMaxLogLevel {
-		return nil, errors.New(fmt.Sprintf("Invalid log level setting %v"), level)
+		return nil, errors.New(fmt.Sprintf("Invalid log level setting %v", level))
 	}
 
-	w := *Woodpile{
+	w := &Woodpile{
 		Fatal: log.New(writer, "FATAL: ", 7),
 		level: int8(level),
 	}
